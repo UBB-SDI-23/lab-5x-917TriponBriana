@@ -26,7 +26,6 @@ export const PatientShowAll = () => {
     const [patients, setPatients] = useState([]);
 
     useEffect(() => {
-		setLoading(true);
 		fetch(`${BACKEND_API_URL}/patient`)
 			.then((response) => response.json())
 			.then((data) => {
@@ -56,7 +55,9 @@ export const PatientShowAll = () => {
             <h1>All Patients</h1>
 
             {loading && <CircularProgress />}
+
             {!loading && patients.length === 0 && <p>No patients found!</p>}
+
             {!loading && (
                 <IconButton component={Link} sx={{ mr: 3}} to={`/patient/add`}>
                     <Tooltip title="Add a new patient!" arrow>
@@ -73,15 +74,15 @@ export const PatientShowAll = () => {
 
             {!loading && patients.length > 0 && (
                 <TableContainer component={Paper}>
-                    <Table sx={{minWidth: 650}} aria-label="simple table">
+                    <Table sx={{minWidth: 900}} aria-label="simple table">
                         <TableHead>
                             <TableRow>
                                 <TableCell>#</TableCell>
-                                <TableCell align="right">First Name</TableCell>
-                                <TableCell align="right">Last Name</TableCell>
-                                <TableCell align="right">Age</TableCell>
-                                <TableCell align="right">Country</TableCell>
-                                <TableCell align="right">Consultation</TableCell>
+                                <TableCell align="center">First Name</TableCell>
+                                <TableCell align="center">Last Name</TableCell>
+                                <TableCell align="center">Age</TableCell>
+                                <TableCell align="center">Country</TableCell>
+                                <TableCell align="center">Consultation</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -90,15 +91,16 @@ export const PatientShowAll = () => {
                                     <TableCell component="th" scope="row">
                                         {index + 1}
                                     </TableCell>
-                                    <TableCell component="th" scope="row">
+                                    {/* <TableCell component="th" scope="row">
                                         <Link to={`/patient/${patient.id}/`} title="View patient details.">
                                             {patient.patient_first_name}
                                         </Link>
-                                    </TableCell>
-                                    <TableCell align="right">{patient.patient_last_name}</TableCell>
-                                    <TableCell align="right">{patient.patient_age}</TableCell>
-                                    <TableCell align="right">{patient.patient_country}</TableCell>
-                                    <TableCell align="right">{patient.patient_consultation}</TableCell>
+                                    </TableCell> */}
+                                    <TableCell align="center">{patient.patient_first_name}</TableCell>
+                                    <TableCell align="center">{patient.patient_last_name}</TableCell>
+                                    <TableCell align="center">{patient.patient_age}</TableCell>
+                                    <TableCell align="center">{patient.patient_country}</TableCell>
+                                    <TableCell align="center">{patient.patient_consultation}</TableCell>
                                     <TableCell align="right">
                                         <IconButton
                                                 component={Link}
