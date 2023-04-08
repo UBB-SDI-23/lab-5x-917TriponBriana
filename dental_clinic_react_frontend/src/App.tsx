@@ -12,6 +12,7 @@ import { PatientDetail } from './components/Patients/PatientDetail'
 import { PatientDelete } from './components/Patients/PatientDelete'
 import { PatientAdd } from './components/Patients/PatientAdd'
 import { PatientUpdate } from './components/Patients/PatientUpdate'
+import { PatientShowOlderThan18 } from './components/Patients/PatientShowOlderThan18'
 
 // function App() {
 
@@ -49,6 +50,7 @@ function App() {
           <Route path="/patient/:patientId/delete" element={<PatientDelete />} />
           <Route path="/patient/add" element={<PatientAdd />} /> 
           <Route path="/patient/:patientId/edit" element={<PatientUpdate />} />
+          <Route path="/patient/older-than-18" element={<PatientShowOlderThan18 />} />
         </Routes>
       </Router>
     </React.Fragment>

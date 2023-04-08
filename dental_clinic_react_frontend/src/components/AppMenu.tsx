@@ -34,6 +34,16 @@ export const AppMenu = () => {
                             sx={{mr: 5}}
                             startIcon={<LocalLibraryIcon />}>
                                 Patients
+                        </Button>
+
+                        <Button
+                            variant={path.startsWith("/patient") ? "outlined": "text"}
+                            to="/patient/older-than-18"
+                            component={Link}
+                            color="inherit"
+                            sx={{ mr: 5 }}
+                            startIcon={<LocalLibraryIcon />}>
+                                Patients Older Than 18
                             </Button>
                     </Toolbar>
                 </AppBar>

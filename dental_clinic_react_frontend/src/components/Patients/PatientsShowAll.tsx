@@ -10,6 +10,7 @@ import {
 	Container,
 	IconButton,
 	Tooltip,
+    Button,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -36,6 +37,20 @@ export const PatientShowAll = () => {
 
     console.log(patients);
 
+    const sortPatient = () => {
+        const sortedPatients = [ ...patients].sort((first: Patient, second: Patient) => {
+            if (first.patient_age < second.patient_age){
+                return -1;
+            }
+            if (first.patient_age > second.patient_age){
+                return 1;
+            }
+            return 0;
+        })
+        console.log(sortedPatients);
+        setPatients(sortedPatients);
+    }
+
     return(
         <Container>
             <h1>All Patients</h1>
@@ -49,6 +64,13 @@ export const PatientShowAll = () => {
                     </Tooltip>
                 </IconButton>
             )}
+
+            {!loading && (
+                <Button sx={{color: "blue"}} onClick={sortPatient}>
+                    Sort Patients
+                </Button>
+            )}
+
             {!loading && patients.length > 0 && (
                 <TableContainer component={Paper}>
                     <Table sx={{minWidth: 650}} aria-label="simple table">
