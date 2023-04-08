@@ -39,7 +39,7 @@ export const PatientUpdate = () => {
         event.preventDefault();
         try {
             await axios.put(`${BACKEND_API_URL}/patient/${patientId}/`, patient);
-            navigate(`/tennisplayers/${patientId}`);
+            navigate(`/patient/${patientId}`);
         } catch (error) {
             console.log(error);
         }
