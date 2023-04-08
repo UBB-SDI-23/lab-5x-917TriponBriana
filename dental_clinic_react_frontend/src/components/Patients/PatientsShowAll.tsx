@@ -22,8 +22,8 @@ import AddIcon from "@mui/icons-material/Add";
 import { Patient } from "../../models/Patient";
 
 export const PatientShowAll = () => {
-    const [loading, setLoading] = useState(false);
-    const [patients, setPatients] = useState<Patient[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [patients, setPatients] = useState([]);
 
     useEffect(() => {
 		setLoading(true);
@@ -85,7 +85,7 @@ export const PatientShowAll = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {patients.map((patient, index) => (
+                            {patients.map((patient:Patient, index) => (
                                 <TableRow key={patient.id}>
                                     <TableCell component="th" scope="row">
                                         {index + 1}
