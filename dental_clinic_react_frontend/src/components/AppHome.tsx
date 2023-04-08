@@ -8,7 +8,7 @@ export const AppHome = () => {
 
             <Container maxWidth="xl">
                 <Typography variant="h1" component="h1" gutterBottom>
-                    Welcome!
+                    Welcome! BlaBla...
                 </Typography>
             </Container>
         </React.Fragment>
