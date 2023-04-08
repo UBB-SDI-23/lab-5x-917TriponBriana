@@ -1,5 +1,5 @@
 from django.test import TestCase
-from app1.models import Patient, Dentist, Consultation, Medication, MedicationDentist
+from lab5.app1.models import Patient, Dentist, Consultation, Medication, MedicationDentist
 
 
 class MedicationByAvgDentistAgeTestCase(TestCase):
