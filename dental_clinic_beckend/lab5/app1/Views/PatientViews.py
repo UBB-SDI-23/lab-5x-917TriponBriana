@@ -27,7 +27,7 @@ class PatientDetail(generics.ListAPIView):
 
 class PatientInfo(generics.ListAPIView):
     queryset = Patient.objects.all()
-    serializer_class = PatientSerializer
+    serializer_class = PatientIdSerializer
     def get(self, request, id):
         try:
             obj = Patient.objects.get(id=id)
