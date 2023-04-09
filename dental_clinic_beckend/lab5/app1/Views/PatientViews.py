@@ -90,3 +90,4 @@ class PatientOlderThan18(generics.ListAPIView):
         print(query.query)
 
         return query
+

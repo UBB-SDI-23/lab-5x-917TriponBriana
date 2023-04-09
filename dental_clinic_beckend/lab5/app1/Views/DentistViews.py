@@ -8,9 +8,9 @@ from ..serializer import PatientSerializer, DentistSerializer, ConsultationSeria
 from rest_framework import generics
 
 
-class DentistDetail(generics.ListAPIView):
-    queryset = Dentist.objects.all()
-    serializer_class = DentistSerializer
+class DentistDetail(APIView):
+    # queryset = Dentist.objects.all()
+    # serializer_class = DentistSerializer
 
     def get(self, request):
         obj = Dentist.objects.all()
@@ -25,9 +25,9 @@ class DentistDetail(generics.ListAPIView):
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 
-class DentistInfo(generics.ListAPIView):
-    queryset = Dentist.objects.all()
-    serializer_class = DentistSerializer
+class DentistInfo(APIView):
+    # queryset = Dentist.objects.all()
+    # serializer_class = DentistSerializer
 
     def get(self, request, id):
         try:

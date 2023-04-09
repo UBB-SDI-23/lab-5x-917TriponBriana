@@ -8,9 +8,9 @@ from ..serializer import PatientSerializer, DentistSerializer, ConsultationSeria
 from rest_framework import generics
 
 
-class ConsultationDetail(generics.ListAPIView):
-    queryset = Consultation.objects.all()
-    serializer_class = ConsultationSerializer
+class ConsultationDetail(APIView):
+    # queryset = Consultation.objects.all()
+    # serializer_class = ConsultationSerializer
 
     def get(self, request):
         obj = Consultation.objects.all()
@@ -25,9 +25,9 @@ class ConsultationDetail(generics.ListAPIView):
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 
-class ConsultationInfo(generics.ListAPIView):
-    queryset = Consultation.objects.all()
-    serializer_class = ConsultationSerializer
+class ConsultationInfo(APIView):
+    # queryset = Consultation.objects.all()
+    # serializer_class = ConsultationSerializer
 
     def get(self, request, id):
         try:
@@ -72,7 +72,7 @@ class ConsultationInfo(generics.ListAPIView):
         return Response({"msg" : "Deleted"}, status=status.HTTP_204_NO_CONTENT)
 
 
-class AddConsultations(generics.ListAPIView):
+class AddConsultations(APIView):
     def post(self, request, id):
         consultation_data = request.data
         msg = "CREATED"
