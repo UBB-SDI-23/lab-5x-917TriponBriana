@@ -62,3 +62,33 @@ class MedicationInfo(APIView):
             return Response(msg, status=status.HTTP_404_NOT_FOUND)
         obj.delete()
         return Response({"msg" : "Deleted"}, status=status.HTTP_204_NO_CONTENT)
+
+
+class MedicationByAvgDentistAge(generics.ListAPIView):
+    serializer_class = MedicationSerializer
+
+    def get_queryset(self):
+        query = Medication.objects.annotate(avg_age=Avg('medicationdentist__dentist__dentist_age')).order_by('avg_age')
+        print(query.query)
+
+        return query
+
+
+class MedicationByNumberOfOtherDentistsPrescribed(generics.ListAPIView):
+    serializer_class = MedicationSerializer
+
+    def get_queryset(self):
+        query = Medication.objects.annotate(
+            number_other_dentists=Count(
+                Dentist.med.through.objects.filter(
+                    medication_id=OuterRef('pk')
+                ).exclude(
+                    dentist_id=OuterRef('dentist__id')
+                ).values('dentist_id').distinct(),
+                distinct=True
+            )
+        ).order_by('-number_other_dentists')[:3]
+
+        print(query.query)
+
+        return query

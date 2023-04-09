@@ -8,11 +8,11 @@ from ..serializer import PatientSerializer, DentistSerializer, ConsultationSeria
 from rest_framework import generics
 
 
-class PatientOlderThan18(generics.ListAPIView):
-    serializer_class = PatientSerializer
-
-    def get_queryset(self):
-        query = Patient.objects.filter(patient_age__gt=18)
-        print(query.query)
-
-        return query
+# class PatientOlderThan18(generics.ListAPIView):
+#     serializer_class = PatientSerializer
+#
+#     def get_queryset(self):
+#         query = Patient.objects.filter(patient_age__gt=18)
+#         print(query.query)
+#
+#         return query

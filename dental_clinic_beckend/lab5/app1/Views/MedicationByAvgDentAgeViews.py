@@ -8,11 +8,11 @@ from ..serializer import PatientSerializer, DentistSerializer, ConsultationSeria
 from rest_framework import generics
 
 
-class MedicationByAvgDentistAge(generics.ListAPIView):
-    serializer_class = MedicationSerializer
-
-    def get_queryset(self):
-        query = Medication.objects.annotate(avg_age=Avg('medicationdentist__dentist__dentist_age')).order_by('avg_age')
-        print(query.query)
-
-        return query
+# class MedicationByAvgDentistAge(generics.ListAPIView):
+#     serializer_class = MedicationSerializer
+#
+#     def get_queryset(self):
+#         query = Medication.objects.annotate(avg_age=Avg('medicationdentist__dentist__dentist_age')).order_by('avg_age')
+#         print(query.query)
+#
+#         return query
