@@ -6,12 +6,7 @@ from ..models import Patient, Dentist, Consultation, Medication, MedicationDenti
 from ..serializer import PatientSerializer, DentistSerializer, ConsultationSerializer, MedicationSerializer, \
     MedicationDentistSerializer, PatientIdSerializer
 from rest_framework import generics
-
-
-class MedicationDentistDetail(generics.ListAPIView):
-    queryset = MedicationDentist.objects.all()
-    serializer_class = MedicationDentistSerializer
-
+class MedicationDentistDetail(APIView):
     def get(self, request):
         obj = MedicationDentist.objects.all()
         serializer = MedicationDentistSerializer(obj, many=True)
@@ -25,10 +20,7 @@ class MedicationDentistDetail(generics.ListAPIView):
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 
-class MedicationDentistInfo(generics.ListAPIView):
-    queryset = MedicationDentist.objects.all()
-    serializer_class = MedicationDentistSerializer
-
+class MedicationDentistInfo(APIView):
     def get(self, request, id):
         try:
             obj = MedicationDentist.objects.get(id=id)
@@ -70,3 +62,4 @@ class MedicationDentistInfo(generics.ListAPIView):
             return Response(msg, status=status.HTTP_404_NOT_FOUND)
         obj.delete()
         return Response({"msg": "Deleted"}, status=status.HTTP_204_NO_CONTENT)
+

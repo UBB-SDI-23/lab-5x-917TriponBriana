@@ -1,4 +1,3 @@
-
 from django.db.models import Avg, Count, OuterRef
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -8,11 +7,7 @@ from ..serializer import PatientSerializer, DentistSerializer, ConsultationSeria
     MedicationDentistSerializer, PatientIdSerializer
 from rest_framework import generics
 
-
-class ConsultationDetail(generics.ListAPIView):
-    queryset = Consultation.objects.all()
-    serializer_class = ConsultationSerializer
-
+class ConsultationDetail(APIView):
     def get(self, request):
         obj = Consultation.objects.all()
         serializer = ConsultationSerializer(obj, many=True)
@@ -26,10 +21,7 @@ class ConsultationDetail(generics.ListAPIView):
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 
-class ConsultationInfo(generics.ListAPIView):
-    queryset = Consultation.objects.all()
-    serializer_class = ConsultationSerializer
-
+class ConsultationInfo(APIView):
     def get(self, request, id):
         try:
             obj = Consultation.objects.get(id=id)
@@ -71,23 +63,3 @@ class ConsultationInfo(generics.ListAPIView):
             return Response(msg, status=status.HTTP_404_NOT_FOUND)
         obj.delete()
         return Response({"msg" : "Deleted"}, status=status.HTTP_204_NO_CONTENT)
-
-
-class AddConsultations(generics.ListAPIView):
-    def post(self, request, id):
-        consultation_data = request.data
-        msg = "CREATED"
-
-        print(request.data)
-        for consultation in consultation_data:
-            consultation['patient'] = id
-            print(consultation)
-            serializer = ConsultationSerializer(data=consultation)
-            if serializer.is_valid():
-                serializer.save()
-        return Response(msg, status=status.HTTP_201_CREATED)
-
-    def get(self, request, id):
-        obj = Consultation.objects.filter(id=id)
-        serializer = ConsultationSerializer(obj, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)

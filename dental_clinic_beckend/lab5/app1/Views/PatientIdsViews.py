@@ -9,8 +9,8 @@ from rest_framework import generics
 from rest_framework import generics
 
 
-# class PatientIds(APIView):
-#     def get(self, request):
-#         obj = Patient.objects.all()
-#         serializer = PatientIdSerializer(obj, many=True)
-#         return Response(serializer.data, status=status.HTTP_200_OK)
+class PatientIds(APIView):
+    def get(self, request):
+        obj = Patient.objects.all()
+        serializer = PatientIdSerializer(obj, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)

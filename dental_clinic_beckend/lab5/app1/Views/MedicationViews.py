@@ -7,11 +7,7 @@ from ..serializer import PatientSerializer, DentistSerializer, ConsultationSeria
     MedicationDentistSerializer, PatientIdSerializer
 from rest_framework import generics
 
-
-class MedicationDetail(generics.ListAPIView):
-    queryset = Medication.objects.all()
-    serializer_class = MedicationSerializer
-
+class MedicationDetail(APIView):
     def get(self, request):
         obj = Medication.objects.all()
         serializer = MedicationSerializer(obj, many=True)
@@ -25,10 +21,7 @@ class MedicationDetail(generics.ListAPIView):
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 
-class MedicationInfo(generics.ListAPIView):
-    queryset = Medication.objects.all()
-    serializer_class = MedicationSerializer
-
+class MedicationInfo(APIView):
     def get(self, request, id):
         try:
             obj = Medication.objects.get(id=id)
@@ -49,7 +42,6 @@ class MedicationInfo(generics.ListAPIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_205_RESET_CONTENT)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
     def patch(self, request, id):
         try:
             obj = Medication.objects.get(id=id)
@@ -70,33 +62,3 @@ class MedicationInfo(generics.ListAPIView):
             return Response(msg, status=status.HTTP_404_NOT_FOUND)
         obj.delete()
         return Response({"msg" : "Deleted"}, status=status.HTTP_204_NO_CONTENT)
-
-
-class MedicationByAvgDentistAge(generics.ListAPIView):
-    serializer_class = MedicationSerializer
-
-    def get_queryset(self):
-        query = Medication.objects.annotate(avg_age=Avg('medicationdentist__dentist__dentist_age')).order_by('avg_age')
-        print(query.query)
-
-        return query
-
-
-class MedicationByNumberOfOtherDentistsPrescribed(generics.ListAPIView):
-    serializer_class = MedicationSerializer
-
-    def get_queryset(self):
-        query = Medication.objects.annotate(
-            number_other_dentists=Count(
-                Dentist.med.through.objects.filter(
-                    medication_id=OuterRef('pk')
-                ).exclude(
-                    dentist_id=OuterRef('dentist__id')
-                ).values('dentist_id').distinct(),
-                distinct=True
-            )
-        ).order_by('-number_other_dentists')[:3]
-
-        print(query.query)
-
-        return query

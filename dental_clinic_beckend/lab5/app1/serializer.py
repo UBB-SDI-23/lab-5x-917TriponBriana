@@ -58,7 +58,6 @@ class MedicationSerializer(serializers.ModelSerializer):
         fields = ('id', 'med_name', 'med_active_subst', 'med_price', 'med_usage', 'med_expiration_date', 'dentist_id', 'dentist', 'avg_age', 'number_other_dentists')
 
 
-
 class MedicationDentistSerializer(serializers.ModelSerializer):
     class Meta:
         model = MedicationDentist

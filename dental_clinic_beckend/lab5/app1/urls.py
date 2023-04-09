@@ -1,15 +1,15 @@
 from django.urls import path
 
-# from .Views.AddConsultationsViews import AddConsultations
-from .Views.ConsultationViews import ConsultationDetail, ConsultationInfo, AddConsultations
+from .Views.AddConsultationsViews import AddConsultations
+from .Views.ConsultationViews import ConsultationDetail, ConsultationInfo
 from .Views.DentistViews import DentistDetail, DentistInfo
-# from .Views.MedicationByAvgDentAgeViews import MedicationByAvgDentistAge
-# from .Views.MedicationByNoOfDentistsViews import MedicationByNumberOfOtherDentistsPrescribed
+from .Views.MedicationByAvgDentAgeViews import MedicationByAvgDentistAge
+from .Views.MedicationByNoOfDentistsViews import MedicationByNumberOfOtherDentistsPrescribed
 from .Views.MedicationDentistViews import MedicationDentistDetail, MedicationDentistInfo
-from .Views.MedicationViews import MedicationDetail, MedicationInfo, MedicationByAvgDentistAge, MedicationByNumberOfOtherDentistsPrescribed
-# from .Views.PatientIdsViews import PatientIds
-# from .Views.PatientOlderThan10Views import PatientOlderThan18
-from .Views.PatientViews import PatientDetail, PatientInfo, PatientIds, PatientOlderThan18
+from .Views.MedicationViews import MedicationDetail, MedicationInfo
+from .Views.PatientIdsViews import PatientIds
+from .Views.PatientOlderThan10Views import PatientOlderThan18
+from .Views.PatientViews import PatientDetail, PatientInfo
 
 # from .views import PatientDetail, PatientInfo, DentistInfo, DentistDetail, PatientOlderThan18, ConsultationDetail, \
 #     ConsultationInfo, PatientIds, MedicationByNumberOfOtherDentistsPrescribed, AddConsultations

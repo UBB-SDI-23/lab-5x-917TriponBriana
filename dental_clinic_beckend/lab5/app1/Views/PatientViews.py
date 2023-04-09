@@ -8,10 +8,7 @@ from ..serializer import PatientSerializer, DentistSerializer, ConsultationSeria
 from rest_framework import generics
 
 
-class PatientDetail(generics.ListAPIView):
-    queryset = Patient.objects.all()
-    serializer_class = PatientSerializer
-
+class PatientDetail(APIView):
     def get(self, request):
         obj = Patient.objects.all()
         serializer = PatientSerializer(obj, many=True)
@@ -25,17 +22,14 @@ class PatientDetail(generics.ListAPIView):
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 
-class PatientInfo(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Patient.objects.all()
-    serializer_class = PatientSerializer
-
+class PatientInfo(APIView):
     def get(self, request, id):
         try:
             obj = Patient.objects.get(id=id)
         except Patient.DoesNotExist:
-            msg = {"msg": "Not found"}
+            msg = {"msg" : "Not found"}
             return Response(msg, status=status.HTTP_404_NOT_FOUND)
-        serializer = PatientIdSerializer(obj)
+        serializer = PatientSerializer(obj)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, id):
@@ -70,23 +64,3 @@ class PatientInfo(generics.RetrieveUpdateDestroyAPIView):
             return Response(msg, status=status.HTTP_404_NOT_FOUND)
         obj.delete()
         return Response({"msg" : "Deleted"}, status=status.HTTP_204_NO_CONTENT)
-
-
-class PatientIds(generics.ListAPIView):
-    queryset = Patient.objects.all()
-    serializer_class = PatientIdSerializer
-
-    def get(self, request):
-        obj = Patient.objects.all()
-        serializer = PatientIdSerializer(obj, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-
-class PatientOlderThan18(generics.ListAPIView):
-    serializer_class = PatientSerializer
-
-    def get_queryset(self):
-        query = Patient.objects.filter(patient_age__gt=18)
-        print(query.query)
-
-        return query
