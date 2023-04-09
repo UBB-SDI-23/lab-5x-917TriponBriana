@@ -1,3 +1,4 @@
+
 from django.db.models import Avg, Count, OuterRef
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -8,9 +9,9 @@ from ..serializer import PatientSerializer, DentistSerializer, ConsultationSeria
 from rest_framework import generics
 
 
-class ConsultationDetail(APIView):
-    # queryset = Consultation.objects.all()
-    # serializer_class = ConsultationSerializer
+class ConsultationDetail(generics.ListAPIView):
+    queryset = Consultation.objects.all()
+    serializer_class = ConsultationSerializer
 
     def get(self, request):
         obj = Consultation.objects.all()
@@ -25,9 +26,9 @@ class ConsultationDetail(APIView):
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 
-class ConsultationInfo(APIView):
-    # queryset = Consultation.objects.all()
-    # serializer_class = ConsultationSerializer
+class ConsultationInfo(generics.ListAPIView):
+    queryset = Consultation.objects.all()
+    serializer_class = ConsultationSerializer
 
     def get(self, request, id):
         try:
@@ -72,7 +73,7 @@ class ConsultationInfo(APIView):
         return Response({"msg" : "Deleted"}, status=status.HTTP_204_NO_CONTENT)
 
 
-class AddConsultations(APIView):
+class AddConsultations(generics.ListAPIView):
     def post(self, request, id):
         consultation_data = request.data
         msg = "CREATED"
@@ -90,4 +91,3 @@ class AddConsultations(APIView):
         obj = Consultation.objects.filter(id=id)
         serializer = ConsultationSerializer(obj, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
