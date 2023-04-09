@@ -17,23 +17,23 @@ from .Views.PatientViews import PatientDetail, PatientInfo
 
 
 urlpatterns = [
-    path("clin/patient/", PatientDetail.as_view(), name="clin"),
-    path("clin/patient/<int:id>/", PatientInfo.as_view()),
-    path("clin/patient/older-than-18/", PatientOlderThan18.as_view()),
-    path("clin/patient/patient-ids/", PatientIds.as_view()),
+    path("patient/", PatientDetail.as_view(), name="clin"),
+    path("patient/<int:id>/", PatientInfo.as_view()),
+    path("patient/older-than-18/", PatientOlderThan18.as_view()),
+    path("patient/patient-ids/", PatientIds.as_view()),
 
-    path("clin/dentist/", DentistDetail.as_view(), name="clin"),
-    path("clin/dentist/<int:id>/", DentistInfo.as_view()),
+    path("dentist/", DentistDetail.as_view(), name="clin"),
+    path("dentist/<int:id>/", DentistInfo.as_view()),
 
-    path("clin/consultation/", ConsultationDetail.as_view(), name="clin"),
-    path("clin/consultation/<int:id>/", ConsultationInfo.as_view()),
-    path("clin/consultation/<int:id>/patient/", AddConsultations.as_view()),
+    path("consultation/", ConsultationDetail.as_view(), name="clin"),
+    path("consultation/<int:id>/", ConsultationInfo.as_view()),
+    path("consultation/<int:id>/patient/", AddConsultations.as_view()),
 
-    path("clin/medication/", MedicationDetail.as_view(), name="clin"),
-    path("clin/medication/<int:id>/", MedicationInfo.as_view()),
+    path("medication/", MedicationDetail.as_view(), name="clin"),
+    path("medication/<int:id>/", MedicationInfo.as_view()),
 
-    path("clin/medication-dentist/", MedicationDentistDetail.as_view(), name="clin"),
-    path("clin/medication-dentist/<int:id>/", MedicationDentistInfo.as_view()),
-    path("clin/medication/order-by-avg-dentist-age/", MedicationByAvgDentistAge.as_view()),
-    path("clin/medication/by-number-of-other-dentists/", MedicationByNumberOfOtherDentistsPrescribed.as_view()),
+    path("medication-dentist/", MedicationDentistDetail.as_view(), name="clin"),
+    path("medication-dentist/<int:id>/", MedicationDentistInfo.as_view()),
+    path("medication/order-by-avg-dentist-age/", MedicationByAvgDentistAge.as_view()),
+    path("medication/by-number-of-other-dentists/", MedicationByNumberOfOtherDentistsPrescribed.as_view()),
 ]
