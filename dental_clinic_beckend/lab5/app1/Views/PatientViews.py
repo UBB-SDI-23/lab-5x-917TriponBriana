@@ -10,7 +10,8 @@ from rest_framework import generics
 
 class PatientDetail(generics.ListAPIView):
     queryset = Patient.objects.all()
-    serializer_class = PatientSerializer
+    serializer_class = PatientIdSerializer
+
     def get(self, request):
         obj = Patient.objects.all()
         serializer = PatientSerializer(obj, many=True)
