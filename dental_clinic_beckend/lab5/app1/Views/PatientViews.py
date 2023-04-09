@@ -82,8 +82,8 @@ class PatientIds(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class PatientOlderThan18(APIView):
-    # serializer_class = PatientSerializer
+class PatientOlderThan18(generics.ListAPIView):
+    serializer_class = PatientSerializer
 
     def get_queryset(self):
         query = Patient.objects.filter(patient_age__gt=18)
