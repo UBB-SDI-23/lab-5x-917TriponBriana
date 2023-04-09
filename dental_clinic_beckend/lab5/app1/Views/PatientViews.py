@@ -25,9 +25,9 @@ class PatientDetail(generics.ListAPIView):
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 
-class PatientInfo(generics.ListAPIView):
+class PatientInfo(generics.RetrieveUpdateDestroyAPIView):
     queryset = Patient.objects.all()
-    serializer_class = PatientIdSerializer
+    serializer_class = PatientSerializer
 
     def get(self, request, id):
         try:
@@ -75,6 +75,7 @@ class PatientInfo(generics.ListAPIView):
 class PatientIds(generics.ListAPIView):
     queryset = Patient.objects.all()
     serializer_class = PatientIdSerializer
+
     def get(self, request):
         obj = Patient.objects.all()
         serializer = PatientIdSerializer(obj, many=True)
