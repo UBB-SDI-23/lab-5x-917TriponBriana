@@ -2,9 +2,12 @@ from django.db.models import Avg, Count, OuterRef
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
-from ..models import Patient, Dentist, Consultation, Medication, MedicationDentist
-from ..serializer import PatientSerializer, DentistSerializer, ConsultationSerializer, MedicationSerializer, \
-    MedicationDentistSerializer, PatientIdSerializer
+from ..Models.ConsultationModels import Consultation
+from ..Models.DentistModels import Dentist
+from ..Models.MedicationDentistModels import MedicationDentist
+from ..Models.MedicationModels import Medication
+from ..Models.PatientModels import Patient
+from ..Serializers.MedicationSerializer import MedicationSerializer
 from rest_framework import generics
 
 
