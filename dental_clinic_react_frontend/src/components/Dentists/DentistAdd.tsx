@@ -9,11 +9,13 @@
 // export const DentistAdd = () => {
 //     const navigate = useNavigate();
 //     const [dentist, setDentist] = useState<Dentist>({
+//         id: 1,
 //         dentist_first_name: "",
 //         dentist_last_name: "",
 //         dentist_age: 1,
 //         dentist_country: "",
 //         dentist_salary: 1,
+//         med: []
 //     });
 
 //     const addDentist = async (event: {preventDefault: () => void}) => {
