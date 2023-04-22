@@ -1,7 +1,7 @@
 
 from django.db import models
 
-from lab5.app1.Models.PatientModels import Patient
+from ..Models.PatientModels import Patient
 
 
 class Consultation(models.Model):
