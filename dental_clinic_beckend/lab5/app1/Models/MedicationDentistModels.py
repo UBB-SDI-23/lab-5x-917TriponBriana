@@ -1,8 +1,8 @@
 
 from django.db import models
 
-from lab5.app1.Models.DentistModels import Dentist
-from lab5.app1.Models.MedicationModels import Medication
+from ..Models.DentistModels import Dentist
+from ..Models.MedicationModels import Medication
 
 
 class MedicationDentist(models.Model):
