@@ -5,7 +5,7 @@ from psycopg2 import sql
 fake = Faker()
 
 conn = psycopg2.connect(
-    host="localhost",
+    host="127.0.0.1",
     port="5432",
     database="db_clinic",
     user="db_user",
