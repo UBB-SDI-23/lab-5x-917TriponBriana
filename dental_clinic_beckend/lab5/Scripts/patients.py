@@ -33,7 +33,7 @@ for i in range(num_batches):
         patient_consultation = fake.random_element(elements=('Albire', 'Detartraj', 'Plombare', 'Implant', 'Fatete'))
 
         values.append(
-            sql.SQL("({}, {}, {}, {}, {}, {})").format(
+            sql.SQL("({}, {}, {}, {}, {})").format(
                 sql.Literal(patient_first_name),
                 sql.Literal(patient_last_name),
                 sql.Literal(patient_age),
