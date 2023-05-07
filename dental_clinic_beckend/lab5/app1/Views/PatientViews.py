@@ -79,7 +79,7 @@ class PatientView(generics.ListCreateAPIView):
 class PatientInfo(APIView):
     def get(self, request, id):
         try:
-            obj = Patient.objects.get(id=id)
+            obj = Patient.objects.get(id=id)[:10]
         except Patient.DoesNotExist:
             msg = {"msg" : "Not found"}
             return Response(msg, status=status.HTTP_404_NOT_FOUND)
