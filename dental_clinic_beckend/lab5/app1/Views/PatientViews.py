@@ -73,6 +73,7 @@ class PatientView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         queryset = Patient.objects.all()
+        print(queryset.explain())
         return queryset
 
 
