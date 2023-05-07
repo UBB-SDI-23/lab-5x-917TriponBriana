@@ -13,7 +13,7 @@ from rest_framework import generics
 
 class PatientDetail(APIView):
     def get(self, request):
-        obj = Patient.objects.all()
+        obj = Patient.objects.all()[:100]
         serializer = PatientSerializer(obj, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
