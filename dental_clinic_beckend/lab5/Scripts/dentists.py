@@ -31,20 +31,20 @@ for i in range(num_batches):
         dentist_age = fake.random_int(min=2, max=99)
         dentist_country = fake.country()
         dentist_salary = fake.random_int(min=12000, max=30000)
-        med_id = fake.random_int(min=1, max=1000000)
+        # med_id = fake.random_int(min=1, max=1000000)
 
         values.append(
-            sql.SQL("({}, {}, {}, {}, {}, {})").format(
+            sql.SQL("({}, {}, {}, {}, {})").format(
                 sql.Literal(dentist_first_name),
                 sql.Literal(dentist_last_name),
                 sql.Literal(dentist_age),
                 sql.Literal(dentist_country),
                 sql.Literal(dentist_salary),
-                sql.Literal(med_id)
+                # sql.Literal(med_id)
             )
         )
 
-    sql_statement = sql.SQL("INSERT INTO dentists (dentist_first_name, dentist_last_name, dentist_age, dentist_country, dentist_salary, med_id) VALUES {}").format(
+    sql_statement = sql.SQL("INSERT INTO dentists (dentist_first_name, dentist_last_name, dentist_age, dentist_country, dentist_salary) VALUES {}").format(
         sql.SQL(", ").join(values)
     )
 
