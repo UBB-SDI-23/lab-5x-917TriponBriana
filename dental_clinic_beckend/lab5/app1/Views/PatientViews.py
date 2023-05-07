@@ -72,7 +72,7 @@ class PatientView(generics.ListCreateAPIView):
     serializer_class = PatientSerializer
 
     def get_queryset(self):
-        queryset = Patient.objects.annotate(nb_registers=Count('patients'))
+        queryset = Patient.objects.annotate(nb_registers=Count('patient_first_name'))
         return queryset
 
 
