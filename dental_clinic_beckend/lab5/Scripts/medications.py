@@ -31,20 +31,20 @@ for i in range(num_batches):
         med_price = fake.random_int(min=15, max=300)
         med_expiration_date = fake.random_element(elements=('13.03.2022', '21.06.2023', '29.10.2022', '05.01.2024', '30.12.2024', '07.05.2023'))
         med_usage = fake.random_element(elements=('Administrare orala cu apa', 'In intervale egate de timp'))
-        dent_id = fake.random_int(min=1, max=1000000)
+        # dent_id = fake.random_int(min=1, max=1000000)
 
         values.append(
-            sql.SQL("({}, {}, {}, {}, {}, {})").format(
+            sql.SQL("({}, {}, {}, {}, {})").format(
                 sql.Literal(med_name),
                 sql.Literal(med_active_subst),
                 sql.Literal(med_price),
                 sql.Literal(med_expiration_date),
                 sql.Literal(med_usage),
-                sql.Literal(dent_id)
+                # sql.Literal(dent_id)
             )
         )
 
-    sql_statement = sql.SQL("INSERT INTO medications (med_name, med_active_subst, med_price, med_expiration_date, med_usage, dent_id) VALUES {}").format(
+    sql_statement = sql.SQL("INSERT INTO medications (med_name, med_active_subst, med_price, med_expiration_date, med_usage) VALUES {}").format(
         sql.SQL(", ").join(values)
     )
 
