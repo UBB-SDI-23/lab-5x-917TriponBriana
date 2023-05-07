@@ -9,7 +9,7 @@ from .Views.MedicationDentistViews import MedicationDentistDetail, MedicationDen
 from .Views.MedicationViews import MedicationDetail, MedicationInfo
 from .Views.PatientIdsViews import PatientIds
 from .Views.PatientOlderThan10Views import PatientOlderThan18
-from .Views.PatientViews import PatientView, PatientInfo
+from .Views.PatientViews import PatientDetail, PatientInfo
 
 # from .views import PatientDetail, PatientInfo, DentistInfo, DentistDetail, PatientOlderThan18, ConsultationDetail, \
 #     ConsultationInfo, PatientIds, MedicationByNumberOfOtherDentistsPrescribed, AddConsultations
@@ -17,7 +17,7 @@ from .Views.PatientViews import PatientView, PatientInfo
 
 
 urlpatterns = [
-    path("patient/", PatientView.as_view(), name="clin"),
+    path("patient/", PatientDetail.as_view(), name="clin"),
     path("patient/<int:id>/", PatientInfo.as_view()),
     path("patient/older-than-18/", PatientOlderThan18.as_view()),
     path("patient/patient-ids/", PatientIds.as_view()),
