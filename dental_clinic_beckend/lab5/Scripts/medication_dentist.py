@@ -23,7 +23,7 @@ total_records = batch_size * num_batches
 
 for i in range(num_batches):
     print(f'Generating batch {i+1}/{num_batches}')
-    medication_id = fake.random_int(min=1, max=(i+1)*100)
+    med_id = fake.random_int(min=1, max=(i+1)*100)
 
     values = []
     for j in range(batch_size):
@@ -33,14 +33,14 @@ for i in range(num_batches):
 
         values.append(
             sql.SQL("({}, {}, {}, {})").format(
-                sql.Literal(medication_id),
+                sql.Literal(med_id),
                 sql.Literal(dentist_id),
                 sql.Literal(prescription_date),
                 sql.Literal(diagnostic)
             )
         )
 
-    sql_statement = sql.SQL("INSERT INTO medication_dentist (medication_id, dentist_id, prescription_date, diagnostic) VALUES {}").format(
+    sql_statement = sql.SQL("INSERT INTO medication_dentist (med_id, dentist_id, prescription_date, diagnostic) VALUES {}").format(
         sql.SQL(", ").join(values)
     )
 
