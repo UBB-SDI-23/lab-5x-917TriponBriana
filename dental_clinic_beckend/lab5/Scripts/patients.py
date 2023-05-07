@@ -26,8 +26,8 @@ for i in range(num_batches):
 
     values = []
     for j in range(batch_size):
-        patient_first_name = fake.first_name()[:40]
-        patient_last_name = fake.last_name()[:40]
+        patient_first_name = fake.first_name()[:50]
+        patient_last_name = fake.last_name()[:50]
         patient_age = fake.random_int(min=2, max=99)
         patient_country = fake.country()
         patient_consultation = fake.random_element(elements=('Albire', 'Detartraj', 'Plombare', 'Implant', 'Fatete'))
